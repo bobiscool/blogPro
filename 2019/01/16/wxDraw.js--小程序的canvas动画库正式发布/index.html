@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="邬一平,bobiscool,tunderball.wu,前端,程序员">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="wxDraw 轻量的小程序canvas动画库  github文档是什么canvas 是HTML5的一个重要元素，它能够高效的绘制图形，但是过于底层，且粗糙的Api，导致开发者很难使用它来做较为复杂的图形， 而且它的即时绘制无记忆特性，使得它内部的图形并不支持动画更不支持一切交互事件。这样的问题出现在所有支持canvas的客户端上同样出现在 微信小程序中的canvas中， 由于小程序由jsCore">
+<meta property="og:type" content="article">
+<meta property="og:title" content="wxDraw.js--小程序的canvas动画库正式发布">
+<meta property="og:url" content="http://ueflat.xyz/2019/01/16/wxDraw.js--小程序的canvas动画库正式发布/index.html">
+<meta property="og:site_name" content="Creator">
+<meta property="og:description" content="wxDraw 轻量的小程序canvas动画库  github文档是什么canvas 是HTML5的一个重要元素，它能够高效的绘制图形，但是过于底层，且粗糙的Api，导致开发者很难使用它来做较为复杂的图形， 而且它的即时绘制无记忆特性，使得它内部的图形并不支持动画更不支持一切交互事件。这样的问题出现在所有支持canvas的客户端上同样出现在 微信小程序中的canvas中， 由于小程序由jsCore">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1698086-8d7ff1cb9eb05a0a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1698086-774186a8e6da82f4?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1698086-8a3fdfaf35ad9b05?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1698086-2b0dacf03c1dd50e?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1698086-91141b090d2cc888?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1698086-23afc1fcccfc0315?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1698086-de83c843d407f957?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1698086-c770b49104458cb3?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1698086-fd3939ba38769d6c?imageMogr2/auto-orient/strip">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1698086-f82cf35e9301cd39?imageMogr2/auto-orient/strip">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1698086-c68a528c3c5cf075?imageMogr2/auto-orient/strip">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1698086-14d2f108db1a76ad?imageMogr2/auto-orient/strip">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1698086-662fa2f0130e59ce?imageMogr2/auto-orient/strip">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1698086-01f9652385ed46e4?imageMogr2/auto-orient/strip">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1698086-40af26935badf570?imageMogr2/auto-orient/strip">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1698086-587793774220800f?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2019-01-16T11:08:41.326Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="wxDraw.js--小程序的canvas动画库正式发布">
+<meta name="twitter:description" content="wxDraw 轻量的小程序canvas动画库  github文档是什么canvas 是HTML5的一个重要元素，它能够高效的绘制图形，但是过于底层，且粗糙的Api，导致开发者很难使用它来做较为复杂的图形， 而且它的即时绘制无记忆特性，使得它内部的图形并不支持动画更不支持一切交互事件。这样的问题出现在所有支持canvas的客户端上同样出现在 微信小程序中的canvas中， 由于小程序由jsCore">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1698086-8d7ff1cb9eb05a0a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://ueflat.xyz/2019/01/16/wxDraw.js--小程序的canvas动画库正式发布/">
+
+
+
+
+
+  <title>wxDraw.js--小程序的canvas动画库正式发布 | Creator</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Creator</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://ueflat.xyz/2019/01/16/wxDraw.js--小程序的canvas动画库正式发布/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wuyiping">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Creator">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">wxDraw.js--小程序的canvas动画库正式发布</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-16T19:08:41+08:00">
+                2019-01-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="http://upload-images.jianshu.io/upload_images/1698086-8d7ff1cb9eb05a0a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="wxDraw"></p>
+<h1 id="wxDraw"><a href="#wxDraw" class="headerlink" title="wxDraw"></a>wxDraw</h1><blockquote>
+<p>轻量的小程序canvas动画库</p>
+</blockquote>
+<h2 id="github"><a href="#github" class="headerlink" title="github"></a><a href="https://github.com/bobiscool/wxDraw" target="_blank" rel="noopener">github</a></h2><h2 id="文档"><a href="#文档" class="headerlink" title="文档"></a><a href="http://project.ueflat.xyz/#/" target="_blank" rel="noopener">文档</a></h2><h2 id="是什么"><a href="#是什么" class="headerlink" title="是什么"></a>是什么</h2><p>canvas 是HTML5的一个重要元素，它能够高效的绘制图形，但是过于底层，且粗糙的Api，导致开发者很难使用它来做较为复杂的图形， 而且它的即时绘制无记忆特性，使得它内部的图形并不支持动画更不支持一切交互事件。<br>这样的问题出现在所有支持canvas的客户端上同样出现在 <strong>微信小程序</strong>中的canvas中， 由于小程序由<strong>jsCore</strong>支持，并没有<strong>window对象</strong>，并且canvas的Api与标准的canvas的Api<strong>有所出入</strong>，所以市面上绝大部分canvas库<strong>与它无缘</strong>。<br>而<strong>wxDraw</strong>也就应运而生，专门用于处理小程序上<strong>canvas</strong>的<strong>图形创建</strong>、<strong>图形动画</strong>以及<strong>交互</strong>问题的。</p>
+<h2 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h2><ul>
+<li><strong>简单</strong> 不需要你会canvas,会用jQuery就会使用wxDraw。</li>
+<li><strong>灵活</strong> 所有图形，随时随地都可以进行属性修改、图形添加以及图形销毁。</li>
+<li><strong>事件支持</strong> 小程序支持的事件只要是合理的都支持。</li>
+<li><strong>缓动动画支持</strong> wxDraw支持链式调用动画『就像jQuery的animate一样』，并且支持几乎所有的缓动函数图形创建</li>
+</ul>
+<h2 id="支持图形"><a href="#支持图形" class="headerlink" title="支持图形"></a>支持图形</h2><p>这些图形都可以在演示文件里看到 <a href="https://github.com/bobiscool/wxDraw/tree/master/example" target="_blank" rel="noopener">点这里</a></p>
+<h3 id="rect"><a href="#rect" class="headerlink" title="rect"></a>rect</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> rect = <span class="keyword">new</span> Shape(<span class="string">'rect'</span>, &#123;<span class="attr">x</span>: <span class="number">60</span>, <span class="attr">y</span>: <span class="number">60</span>, <span class="attr">w</span>: <span class="number">40</span>, <span class="attr">h</span>: <span class="number">40</span>, <span class="attr">fillStyle</span>: <span class="string">"#2FB8AC"</span>, <span class="attr">rotate</span>: <span class="built_in">Math</span>.PI/<span class="number">2</span> &#125;,<span class="string">'mix'</span>, <span class="literal">true</span>);</span><br></pre></td></tr></table></figure>
+<p><img src="http://upload-images.jianshu.io/upload_images/1698086-774186a8e6da82f4?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="rect">rect</p>
+<h3 id="circle"><a href="#circle" class="headerlink" title="circle"></a>circle</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> circle = <span class="keyword">new</span> Shape(<span class="string">'circle'</span>, &#123; <span class="attr">x</span>: <span class="number">100</span>, <span class="attr">y</span>: <span class="number">100</span>, <span class="attr">r</span>: <span class="number">40</span>, <span class="attr">sA</span>: <span class="built_in">Math</span>.PI/<span class="number">4</span>, <span class="attr">fillStyle</span>: <span class="string">"#C0D860"</span>, <span class="attr">strokeStyle</span>: <span class="string">"#CC333F"</span>, <span class="attr">rotate</span>: <span class="number">20</span>, <span class="attr">lineWidth</span>: <span class="number">0</span>, <span class="attr">needGra</span>: <span class="string">'line'</span>, <span class="attr">gra</span>: [[<span class="number">0</span>, <span class="string">'#00A0B0'</span>], [<span class="number">0.2</span>, <span class="string">'#6A4A3C'</span>], [<span class="number">0.4</span>, <span class="string">'#CC333F'</span>], [<span class="number">0.6</span>, <span class="string">'#EB6841'</span>], [<span class="number">1</span>, <span class="string">'#EDC951'</span>]]&#125;, <span class="string">'fill'</span>, <span class="literal">true</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="http://upload-images.jianshu.io/upload_images/1698086-8a3fdfaf35ad9b05?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h3 id="polygon"><a href="#polygon" class="headerlink" title="polygon"></a>polygon</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> polygon = <span class="keyword">new</span> Shape(<span class="string">'polygon'</span>, &#123; <span class="attr">x</span>: <span class="number">200</span>, <span class="attr">y</span>: <span class="number">200</span>, <span class="attr">r</span>: <span class="number">40</span>, <span class="attr">sides</span>: <span class="number">9</span>, <span class="comment">//9边形 fillStyle: "#FC354C", rotate: Math.PI / 4 &#125;, 'mix', true)</span></span><br></pre></td></tr></table></figure>
+<p><img src="http://upload-images.jianshu.io/upload_images/1698086-2b0dacf03c1dd50e?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h3 id="ellipse"><a href="#ellipse" class="headerlink" title="ellipse"></a>ellipse</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> ellipse = <span class="keyword">new</span> Shape(<span class="string">'ellipse'</span>, &#123; <span class="attr">x</span>: <span class="number">200</span>, <span class="attr">y</span>: <span class="number">200</span>, <span class="attr">a</span>: <span class="number">40</span>, <span class="attr">b</span>: <span class="number">100</span>, <span class="attr">fillStyle</span>: <span class="string">"#00A0B0"</span>, <span class="attr">rotate</span>: <span class="built_in">Math</span>.PI / <span class="number">7</span> &#125;, <span class="string">'mix'</span>, <span class="literal">true</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="http://upload-images.jianshu.io/upload_images/1698086-91141b090d2cc888?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h3 id="cshape-「自定义图形」"><a href="#cshape-「自定义图形」" class="headerlink" title="cshape 「自定义图形」"></a>cshape 「自定义图形」</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> cshape = <span class="keyword">new</span> Shape(<span class="string">'cshape'</span>, &#123; <span class="attr">rotate</span>: <span class="built_in">Math</span>.PI / <span class="number">2</span>, <span class="attr">points</span>: [[<span class="number">70</span>, <span class="number">85</span>], [<span class="number">40</span>, <span class="number">20</span>], [<span class="number">24</span>, <span class="number">46</span>], [<span class="number">2</span>, <span class="number">4</span>], [<span class="number">14</span>, <span class="number">6</span>], [<span class="number">4</span>, <span class="number">46</span>]], <span class="attr">lineWidth</span>: <span class="number">5</span>, <span class="attr">fillStyle</span>: <span class="string">"#00A0B0"</span>, <span class="attr">rotate</span>: <span class="built_in">Math</span>.PI / <span class="number">7</span>, <span class="attr">needGra</span>: <span class="string">'circle'</span>, <span class="attr">smooth</span>:<span class="literal">false</span>, <span class="attr">gra</span>: [[<span class="number">0</span>, <span class="string">'#00A0B0'</span>], [<span class="number">0.2</span>, <span class="string">'#6A4A3C'</span>], [<span class="number">0.4</span>, <span class="string">'#CC333F'</span>], [<span class="number">0.6</span>, <span class="string">'#EB6841'</span>], [<span class="number">1</span>, <span class="string">'#EDC951'</span>]] &#125;, <span class="string">'fill'</span>, <span class="literal">true</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="http://upload-images.jianshu.io/upload_images/1698086-23afc1fcccfc0315?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h3 id="line"><a href="#line" class="headerlink" title="line"></a>line</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> line = <span class="keyword">new</span> Shape(<span class="string">'line'</span>, &#123; <span class="attr">points</span>:[[<span class="number">240</span>,<span class="number">373</span>],[<span class="number">11</span>,<span class="number">32</span>],[<span class="number">28</span>,<span class="number">423</span>],[<span class="number">12</span>,<span class="number">105</span>],[<span class="number">203</span>,<span class="number">41</span>],[<span class="number">128</span>,<span class="number">0.06</span>]], <span class="attr">strokeStyle</span>: <span class="string">"#2FB8AC"</span>,<span class="attr">lineWidth</span>:<span class="number">1</span>, <span class="attr">rotate</span>: <span class="number">0</span>, <span class="attr">needShadow</span>: <span class="literal">true</span>,<span class="attr">smooth</span>:<span class="literal">false</span> &#125;, <span class="string">'fill'</span>, <span class="literal">true</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="http://upload-images.jianshu.io/upload_images/1698086-de83c843d407f957?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h3 id="text"><a href="#text" class="headerlink" title="text"></a>text</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> text = <span class="keyword">new</span> Shape(<span class="string">'text'</span>, &#123; <span class="attr">x</span>: <span class="number">200</span>, <span class="attr">y</span>: <span class="number">200</span>, <span class="attr">text</span>: <span class="string">"我是测试文字"</span>, <span class="attr">fillStyle</span>: <span class="string">"#E6781E"</span>, <span class="attr">rotate</span>: <span class="built_in">Math</span>.PI / <span class="number">3</span>&#125; <span class="string">'fill'</span>, <span class="literal">true</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="http://upload-images.jianshu.io/upload_images/1698086-c770b49104458cb3?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h2 id="wxDraw创作的动画演示"><a href="#wxDraw创作的动画演示" class="headerlink" title="wxDraw创作的动画演示"></a>wxDraw创作的动画演示</h2><blockquote>
+<p>这些动画都可以在演示文件里看到 <a href="https://github.com/bobiscool/wxDraw/tree/master/example" target="_blank" rel="noopener">点这里</a></p>
+</blockquote>
+<h3 id="Google"><a href="#Google" class="headerlink" title="Google"></a>Google</h3><p><img src="http://upload-images.jianshu.io/upload_images/1698086-fd3939ba38769d6c?imageMogr2/auto-orient/strip" alt=""></p>
+<h3 id="贪吃蛇"><a href="#贪吃蛇" class="headerlink" title="贪吃蛇"></a>贪吃蛇</h3><p><img src="http://upload-images.jianshu.io/upload_images/1698086-f82cf35e9301cd39?imageMogr2/auto-orient/strip" alt=""></p>
+<h3 id="logo演绎"><a href="#logo演绎" class="headerlink" title="logo演绎"></a>logo演绎</h3><p><img src="http://upload-images.jianshu.io/upload_images/1698086-c68a528c3c5cf075?imageMogr2/auto-orient/strip" alt=""></p>
+<h3 id="rect舞蹈"><a href="#rect舞蹈" class="headerlink" title="rect舞蹈"></a>rect舞蹈</h3><p><img src="http://upload-images.jianshu.io/upload_images/1698086-14d2f108db1a76ad?imageMogr2/auto-orient/strip" alt=""></p>
+<h3 id="吃豆人"><a href="#吃豆人" class="headerlink" title="吃豆人"></a>吃豆人</h3><p><img src="http://upload-images.jianshu.io/upload_images/1698086-662fa2f0130e59ce?imageMogr2/auto-orient/strip" alt=""></p>
+<h2 id="wxDraw事件"><a href="#wxDraw事件" class="headerlink" title="wxDraw事件"></a>wxDraw事件</h2><blockquote>
+<p>这些事件都可以在演示文件里看到 <a href="https://github.com/bobiscool/wxDraw/tree/master/example" target="_blank" rel="noopener">点这里</a></p>
+</blockquote>
+<p>支持</p>
+<ul>
+<li>tap</li>
+<li>touchStart</li>
+<li>touchEnd</li>
+<li>touchMove</li>
+<li>longPress</li>
+<li>drag「自定义的事件」</li>
+</ul>
+<h2 id="事件演示"><a href="#事件演示" class="headerlink" title="事件演示"></a>事件演示</h2><p>旁边UI小妹妹亲自示范 😜</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1698086-01f9652385ed46e4?imageMogr2/auto-orient/strip" alt=""></p>
+<h3 id="第一视角"><a href="#第一视角" class="headerlink" title="第一视角"></a>第一视角</h3><p><img src="http://upload-images.jianshu.io/upload_images/1698086-40af26935badf570?imageMogr2/auto-orient/strip" alt=""></p>
+<p><strong>是不是特别简单，特别方便！！！来，老铁们！</strong>star<strong> 走一波！！！</strong></p>
+<h4 id="如果你觉得这个库还不错-对你有帮助-那给作者买一个鸡腿吧「最近健身-需要补这个」"><a href="#如果你觉得这个库还不错-对你有帮助-那给作者买一个鸡腿吧「最近健身-需要补这个」" class="headerlink" title="如果你觉得这个库还不错 对你有帮助 那给作者买一个鸡腿吧「最近健身 需要补这个」"></a>如果你觉得这个库还不错 对你有帮助 那给作者买一个鸡腿吧「最近健身 需要补这个」</h4><p><img src="http://upload-images.jianshu.io/upload_images/1698086-587793774220800f?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>详细文档还请关注<br><a href="https://github.com/bobiscool/wxDraw" target="_blank" rel="noopener">github</a><br><a href="http://project.ueflat.xyz/#/" target="_blank" rel="noopener">文档</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/01/16/nfs/" rel="prev" title="NFS 介绍">
+                NFS 介绍 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">wuyiping</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/bobiscool" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:tomisugly@163.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#wxDraw"><span class="nav-number">1.</span> <span class="nav-text">wxDraw</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#github"><span class="nav-number">1.1.</span> <span class="nav-text">github</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文档"><span class="nav-number">1.2.</span> <span class="nav-text">文档</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#是什么"><span class="nav-number">1.3.</span> <span class="nav-text">是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#特性"><span class="nav-number">1.4.</span> <span class="nav-text">特性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#支持图形"><span class="nav-number">1.5.</span> <span class="nav-text">支持图形</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#rect"><span class="nav-number">1.5.1.</span> <span class="nav-text">rect</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#circle"><span class="nav-number">1.5.2.</span> <span class="nav-text">circle</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#polygon"><span class="nav-number">1.5.3.</span> <span class="nav-text">polygon</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ellipse"><span class="nav-number">1.5.4.</span> <span class="nav-text">ellipse</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cshape-「自定义图形」"><span class="nav-number">1.5.5.</span> <span class="nav-text">cshape 「自定义图形」</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#line"><span class="nav-number">1.5.6.</span> <span class="nav-text">line</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#text"><span class="nav-number">1.5.7.</span> <span class="nav-text">text</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#wxDraw创作的动画演示"><span class="nav-number">1.6.</span> <span class="nav-text">wxDraw创作的动画演示</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Google"><span class="nav-number">1.6.1.</span> <span class="nav-text">Google</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#贪吃蛇"><span class="nav-number">1.6.2.</span> <span class="nav-text">贪吃蛇</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#logo演绎"><span class="nav-number">1.6.3.</span> <span class="nav-text">logo演绎</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rect舞蹈"><span class="nav-number">1.6.4.</span> <span class="nav-text">rect舞蹈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#吃豆人"><span class="nav-number">1.6.5.</span> <span class="nav-text">吃豆人</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#wxDraw事件"><span class="nav-number">1.7.</span> <span class="nav-text">wxDraw事件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事件演示"><span class="nav-number">1.8.</span> <span class="nav-text">事件演示</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一视角"><span class="nav-number">1.8.1.</span> <span class="nav-text">第一视角</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#如果你觉得这个库还不错-对你有帮助-那给作者买一个鸡腿吧「最近健身-需要补这个」"><span class="nav-number">1.8.1.1.</span> <span class="nav-text">如果你觉得这个库还不错 对你有帮助 那给作者买一个鸡腿吧「最近健身 需要补这个」</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wuyiping</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+.box-prev-next {
+  margin-top: -40px;
+  margin-bottom: 70px; }
+  .box-prev-next a,
+  .box-prev-next .icon {
+    display: inline-block; }
+  .box-prev-next a {
+    text-align: center;
+    line-height: 36px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid #dfdfdf; }
+    .box-prev-next a.pull-left .icon:before {
+      margin-right: 0.28em !important; }
+    .box-prev-next a.pull-right .icon:before {
+      margin-left: 0.28em !important; }
+    .box-prev-next a.hide {
+      display: none !important; }
+    .box-prev-next a.show {
+      display: block !important; }
+  .box-prev-next .icon {
+    color: #ccc;
+    font-size: 24px; }
+    .box-prev-next .icon:hover {
+      color: #bfbfbf; }
+
+/*# sourceMappingURL=prev-net.css.map */
